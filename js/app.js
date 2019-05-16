@@ -1,5 +1,6 @@
 //variables
 const courses = document.querySelector("#courses-list");
+      shoppingCartContent = document.querySelector("#cart-content tbody")
 
 //listeners
 
@@ -40,5 +41,18 @@ function getCourseInfo(course) {
 function addIntoCart(course) {
   //create a <tr>
   const row = document.createElement("tr");
-  row.innerHTML = ``;
+  row.innerHTML = `
+    <tr>
+      <td>
+        <img src="${course.image}" width=100>
+      </td>
+      <td>${course.title}</td>
+      <td>${course.price}</td>
+      <td>
+        <a href="" class="remove" data-id="${course.id}">X</a>
+      </td>
+    </tr>
+  `;
+shoppingCartContent.appendChild(row);
+
 }
