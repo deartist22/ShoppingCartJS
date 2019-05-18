@@ -59,7 +59,29 @@ function addIntoCart(course) {
     </tr>
   `;
 shoppingCartContent.appendChild(row);
+  //Add course to local storage
+  saveIntoStorage(course)
+}
 
+//Add courses into local storage
+function saveIntoStorage(course) {
+  let courses = getCoursesFromStorage();
+  //Add the course into the array
+  courses.push(course);
+  //Since storage only saves strings, we need to convert JSON into strings
+  localStorage.setItem("courses", JSON.stringify(courses));
+}
+
+//Get content from storage
+function getCoursesFromStorage() {
+  let courses
+  //if something exist on storage then we get the value, otherwise create an empty array
+  if(localStorage.getItem("courses") === null) {
+    courses = [];
+  } else {
+    courses = JSON.parse(localStorage.getItem("courses"));
+  }
+  return courses;
 }
 
 //remove course from the dom
